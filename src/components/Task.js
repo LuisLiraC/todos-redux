@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { deleteTodo, changeState, updateTask } from '../redux/actions'
 import { FormGroup, Input, Button } from 'reactstrap'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-const Task = ({ id, title, isCompleted, deleteTodo, changeState, updateTask }) => {
+const Task = ({ id, title, isCompleted }) => {
   const [edit, setEdit] = useState()
   const [form, setForm] = useState({
     title: ''
   })
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     setForm({
@@ -17,7 +18,7 @@ const Task = ({ id, title, isCompleted, deleteTodo, changeState, updateTask }) =
   }
 
   const handleSave = () => {
-    updateTask(form)
+    dispatch(updateTask(form))
     handleClose()
   }
 
@@ -76,22 +77,16 @@ const Task = ({ id, title, isCompleted, deleteTodo, changeState, updateTask }) =
           type='button'
           color={isCompleted ? 'secondary' : 'success'}
           className='mr-3'
-          onClick={() => changeState(id)}
+          onClick={() => dispatch(changeState(id))}
         >&#10003;</Button>
         <Button
           size='sm'
           outline type='button'
           color='danger'
-          onClick={() => deleteTodo(id)}
+          onClick={() => dispatch(deleteTodo(id))}
         >X</Button>
       </div>
     )
 }
 
-const mapDispatchToProps = {
-  deleteTodo,
-  changeState,
-  updateTask
-}
-
-export default connect(null, mapDispatchToProps)(Task)
+export default Task

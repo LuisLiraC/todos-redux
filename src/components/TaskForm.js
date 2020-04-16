@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addTodo } from '../redux/actions'
 import { Container, Form, Label, Input, Button, FormGroup } from 'reactstrap'
 
-const TaskForm = ({ addTodo }) => {
+const TaskForm = () => {
   const [form, setForm] = useState({
     title: ''
   })
+  const dispatch = useDispatch()
 
   const handleChange = event => {
     setForm({
@@ -17,7 +18,7 @@ const TaskForm = ({ addTodo }) => {
   const handleSubmit = event => {
     event.preventDefault()
     if (form.title !== '' && form.title !== undefined) {
-      addTodo(form)
+      dispatch(addTodo(form))
       setForm({ title: '' })
     }
   }
@@ -41,8 +42,4 @@ const TaskForm = ({ addTodo }) => {
   )
 }
 
-const mapDispatchToProps = {
-  addTodo
-}
-
-export default connect(null, mapDispatchToProps)(TaskForm)
+export default TaskForm

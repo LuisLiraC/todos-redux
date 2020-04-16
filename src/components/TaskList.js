@@ -1,9 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Container } from 'reactstrap'
 import Task from './Task'
 
-const TaskList = ({ todos }) => {
+const TaskList = () => {
+  const todos = useSelector(state => state.todos)
 
   return (
     <Container className='text-center'>
@@ -16,6 +17,4 @@ const TaskList = ({ todos }) => {
   )
 }
 
-const mapStateToProps = ({ todos }) => ({ todos })
-
-export default connect(mapStateToProps)(TaskList)
+export default TaskList
