@@ -3,11 +3,12 @@ import { deleteTodo, changeState, updateTask } from '../redux/actions'
 import { FormGroup, Input, Button } from 'reactstrap'
 import { useDispatch } from 'react-redux'
 
-const Task = ({ id, title, isCompleted }) => {
+const TaskComponent = ({ id, title, isCompleted }) => {
   const [edit, setEdit] = useState()
   const [form, setForm] = useState({
     title: ''
   })
+
   const dispatch = useDispatch()
 
   const handleChange = (event) => {
@@ -88,5 +89,7 @@ const Task = ({ id, title, isCompleted }) => {
       </div>
     )
 }
+
+const Task = React.memo(TaskComponent)
 
 export default Task
