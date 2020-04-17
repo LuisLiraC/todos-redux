@@ -39,7 +39,7 @@ const Task = ({ id, title, isCompleted }) => {
         <Input
           type='text'
           name='title'
-          className='text-center'
+          className='text-center edit-input'
           value={form.title}
           onChange={handleChange}
         />
