@@ -9,7 +9,10 @@ export const reducer = (state, { type, payload }) => {
 
   switch (type) {
     case ADD_TODO:
-      const id = state.todos.length === 0 ? 1 : state.todos[state.todos.length - 1].id + 1
+      const id = state.todos.length === 0 
+        ? 1 
+        : state.todos[state.todos.length - 1].id + 1
+
       const afterAdd = [
         ...state.todos,
         {

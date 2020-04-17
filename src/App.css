@@ -7,3 +7,8 @@
 .task {
     font-weight: bold;
 }
+
+.edit-input {
+    max-width: 400px;
+    margin: 0 auto;
+}
